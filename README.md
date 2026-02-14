@@ -103,10 +103,8 @@ Atlas answers using stored meeting memory and decision context.
 
 ## 🧩 Architecture Overview
 
-```
-Meeting Video / Audio
-        ↓
-Audio Extraction (if video)
+
+Audio Extraction
         ↓
 ElevenLabs STT
         ↓
