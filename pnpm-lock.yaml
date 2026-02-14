@@ -13,10 +13,16 @@ importers:
         version: 0.2.64(@hey-api/openapi-ts@0.67.1(typescript@5.8.3))
       '@blaxel/llamaindex':
         specifier: 0.2.64
-        version: 0.2.64(@hey-api/openapi-ts@0.67.1(typescript@5.8.3))(@llamaindex/env@0.1.30)(@modelcontextprotocol/sdk@1.20.2)(@opentelemetry/api@1.9.0)(p-retry@6.2.1)(tree-sitter@0.22.4)(web-tree-sitter@0.24.7)(ws@8.18.2)(zod@3.25.76)
+        version: 0.2.64(@hey-api/openapi-ts@0.67.1(typescript@5.8.3))(@llamaindex/env@0.1.30)(@modelcontextprotocol/sdk@1.20.2)(@opentelemetry/api@1.9.0)(p-retry@6.2.1)(tree-sitter@0.22.4)(web-tree-sitter@0.24.7)(ws@8.19.0)(zod@3.25.76)
       '@blaxel/telemetry':
         specifier: 0.2.64
         version: 0.2.64(@hey-api/openapi-ts@0.67.1(typescript@5.8.3))(zod@3.25.76)
+      '@elevenlabs/elevenlabs-js':
+        specifier: ^2.35.0
+        version: 2.35.0
+      '@fastify/multipart':
+        specifier: ^9.4.0
+        version: 9.4.0
       '@llamaindex/core':
         specifier: '*'
         version: 0.6.13
@@ -126,6 +132,10 @@ packages:
   '@blaxel/telemetry@0.2.64':
     resolution: {integrity: sha512-vW1IiWYNfmTAjo0sdxtqQsOaz/wWAAi4knMyOwSG7cn0SHahlMhriAII/lcVXCIBGSAKo24ow8kEJ+WRNA09Mw==}
     engines: {node: '>=18'}
+
+  '@elevenlabs/elevenlabs-js@2.35.0':
+    resolution: {integrity: sha512-iQO8Q7nxBnMpP494ziRD4e0dtMQcqI2IVFacBbH2huOrqetg0DG+BPFLC4IHa/KLT6u6UXYq5Hc7HnxZsqmQ9w==}
+    engines: {node: '>=18.0.0'}
 
   '@esbuild/aix-ppc64@0.25.5':
     resolution: {integrity: sha512-9o3TMmpmftaCMepOdA5k/yDw8SfInyzWWTjYTFCX3kPSDJMROQTb8jg+h9Cnwnmm1vOzvxN7gIfB5V2ewpjtGA==}
@@ -280,6 +290,12 @@ packages:
   '@fastify/ajv-compiler@4.0.2':
     resolution: {integrity: sha512-Rkiu/8wIjpsf46Rr+Fitd3HRP+VsxUFDDeag0hs9L0ksfnwx2g7SPQQTFL0E8Qv+rfXzQOxBJnjUB9ITUDjfWQ==}
 
+  '@fastify/busboy@3.2.0':
+    resolution: {integrity: sha512-m9FVDXU3GT2ITSe0UaMA5rU3QkfC/UXtCU8y0gSN/GugTqtVldOBWIB5V6V3sbmenVZUIpU6f+mPEO2+m5iTaA==}
+
+  '@fastify/deepmerge@3.2.0':
+    resolution: {integrity: sha512-aO5giNgFN+rD4fMUAkro9nEL7c9gh5Q3lh0ZGKMDAhQAytf22HLicF/qZ2EYTDmH+XL2WvdazwBfOdmp6NiwBg==}
+
   '@fastify/error@4.2.0':
     resolution: {integrity: sha512-RSo3sVDXfHskiBZKBPRgnQTtIqpi/7zhJOEmAxCiBcM7d0uwdGdxLlsCaLzGs8v8NnxIRlfG0N51p5yFaOentQ==}
 
@@ -291,6 +307,9 @@ packages:
 
   '@fastify/merge-json-schemas@0.2.1':
     resolution: {integrity: sha512-OA3KGBCy6KtIvLf8DINC5880o5iBlDX4SxzLQS8HorJAbqluzLRn80UXU0bxZn7UOFhFgpRJDasfwn9nG4FG4A==}
+
+  '@fastify/multipart@9.4.0':
+    resolution: {integrity: sha512-Z404bzZeLSXTBmp/trCBuoVFX28pM7rhv849Q5TsbTFZHuk1lc4QjQITTPK92DKVpXmNtJXeHSSc7GYvqFpxAQ==}
 
   '@fastify/proxy-addr@5.0.0':
     resolution: {integrity: sha512-37qVVA1qZ5sgH7KpHkkC4z9SK6StIsIcOmpjvMPXNb3vx2GQxhZocogVYbr2PbbeLCQxYIPDok307xEvRZOzGA==}
@@ -877,6 +896,9 @@ packages:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
 
+  command-exists@1.2.9:
+    resolution: {integrity: sha512-LTQ/SGc+s0Xc0Fu5WaKnR0YiygZkm9eKFvyS+fRsU7/ZWFF8ykFM6Pc9aCVf1+xasOOZpO3BAVgVrKvsqKHV7w==}
+
   commander@13.0.0:
     resolution: {integrity: sha512-oPYleIY8wmTVzkvQq10AEok6YcTC4sRUBl8F9gVuwchGVUCTbl/vhLTaQqutuuySYOsu8YTgV+OxKc/8Yvx+mQ==}
     engines: {node: '>=18'}
@@ -1052,6 +1074,9 @@ packages:
 
   fast-uri@3.0.6:
     resolution: {integrity: sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==}
+
+  fastify-plugin@5.1.0:
+    resolution: {integrity: sha512-FAIDA8eovSt5qcDgcBvDuX/v0Cjz0ohGhENZ/wpc3y+oZCY2afZ9Baqql3g/lC+OHRnciQol4ww7tuthOb9idw==}
 
   fastify@5.4.0:
     resolution: {integrity: sha512-I4dVlUe+WNQAhKSyv15w+dwUh2EPiEl4X2lGYMmNSgF83WzTMAPKGdWEv5tPsCQOb+SOZwz8Vlta2vF+OeDgRw==}
@@ -1733,6 +1758,18 @@ packages:
       utf-8-validate:
         optional: true
 
+  ws@8.19.0:
+    resolution: {integrity: sha512-blAT2mjOEIi0ZzruJfIhb3nps74PRWTCz1IjglWEEpQl5XS/UNama6u2/rjFkDDouqr4L67ry+1aGIALViWjDg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
 
@@ -1848,14 +1885,14 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@blaxel/llamaindex@0.2.64(@hey-api/openapi-ts@0.67.1(typescript@5.8.3))(@llamaindex/env@0.1.30)(@modelcontextprotocol/sdk@1.20.2)(@opentelemetry/api@1.9.0)(p-retry@6.2.1)(tree-sitter@0.22.4)(web-tree-sitter@0.24.7)(ws@8.18.2)(zod@3.25.76)':
+  '@blaxel/llamaindex@0.2.64(@hey-api/openapi-ts@0.67.1(typescript@5.8.3))(@llamaindex/env@0.1.30)(@modelcontextprotocol/sdk@1.20.2)(@opentelemetry/api@1.9.0)(p-retry@6.2.1)(tree-sitter@0.22.4)(web-tree-sitter@0.24.7)(ws@8.19.0)(zod@3.25.76)':
     dependencies:
       '@blaxel/core': 0.2.64(@hey-api/openapi-ts@0.67.1(typescript@5.8.3))
       '@llamaindex/anthropic': 0.3.26(@llamaindex/core@0.6.22)(@llamaindex/env@0.1.30)
       '@llamaindex/core': 0.6.22
       '@llamaindex/google': 0.3.22(@llamaindex/core@0.6.22)(@llamaindex/env@0.1.30)(@modelcontextprotocol/sdk@1.20.2)
       '@llamaindex/mistral': 0.1.22(@llamaindex/core@0.6.22)(@llamaindex/env@0.1.30)(zod@3.25.76)
-      '@llamaindex/openai': 0.4.22(@llamaindex/core@0.6.22)(@llamaindex/env@0.1.30)(ws@8.18.2)(zod@3.25.76)
+      '@llamaindex/openai': 0.4.22(@llamaindex/core@0.6.22)(@llamaindex/env@0.1.30)(ws@8.19.0)(zod@3.25.76)
       '@opentelemetry/instrumentation': 0.203.0(@opentelemetry/api@1.9.0)
       '@traceloop/instrumentation-llamaindex': 0.14.0(@opentelemetry/api@1.9.0)
       llamaindex: 0.12.1(@modelcontextprotocol/sdk@1.20.2)(p-retry@6.2.1)(tree-sitter@0.22.4)(web-tree-sitter@0.24.7)(zod@3.25.76)
@@ -1908,6 +1945,16 @@ snapshots:
       - supports-color
       - utf-8-validate
       - zod
+
+  '@elevenlabs/elevenlabs-js@2.35.0':
+    dependencies:
+      command-exists: 1.2.9
+      node-fetch: 2.7.0
+      ws: 8.19.0
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - utf-8-validate
 
   '@esbuild/aix-ppc64@0.25.5':
     optional: true
@@ -1990,6 +2037,10 @@ snapshots:
       ajv-formats: 3.0.1(ajv@8.17.1)
       fast-uri: 3.0.6
 
+  '@fastify/busboy@3.2.0': {}
+
+  '@fastify/deepmerge@3.2.0': {}
+
   '@fastify/error@4.2.0': {}
 
   '@fastify/fast-json-stringify-compiler@5.0.3':
@@ -2001,6 +2052,14 @@ snapshots:
   '@fastify/merge-json-schemas@0.2.1':
     dependencies:
       dequal: 2.0.3
+
+  '@fastify/multipart@9.4.0':
+    dependencies:
+      '@fastify/busboy': 3.2.0
+      '@fastify/deepmerge': 3.2.0
+      '@fastify/error': 4.2.0
+      fastify-plugin: 5.1.0
+      secure-json-parse: 4.0.0
 
   '@fastify/proxy-addr@5.0.0':
     dependencies:
@@ -2142,11 +2201,11 @@ snapshots:
       tree-sitter: 0.22.4
       web-tree-sitter: 0.24.7
 
-  '@llamaindex/openai@0.4.22(@llamaindex/core@0.6.22)(@llamaindex/env@0.1.30)(ws@8.18.2)(zod@3.25.76)':
+  '@llamaindex/openai@0.4.22(@llamaindex/core@0.6.22)(@llamaindex/env@0.1.30)(ws@8.19.0)(zod@3.25.76)':
     dependencies:
       '@llamaindex/core': 0.6.22
       '@llamaindex/env': 0.1.30
-      openai: 5.23.2(ws@8.18.2)(zod@3.25.76)
+      openai: 5.23.2(ws@8.19.0)(zod@3.25.76)
     transitivePeerDependencies:
       - ws
       - zod
@@ -2667,6 +2726,8 @@ snapshots:
     dependencies:
       delayed-stream: 1.0.0
 
+  command-exists@1.2.9: {}
+
   commander@13.0.0: {}
 
   confbox@0.1.8: {}
@@ -2861,6 +2922,8 @@ snapshots:
   fast-redact@3.5.0: {}
 
   fast-uri@3.0.6: {}
+
+  fastify-plugin@5.1.0: {}
 
   fastify@5.4.0:
     dependencies:
@@ -3261,9 +3324,9 @@ snapshots:
     dependencies:
       wrappy: 1.0.2
 
-  openai@5.23.2(ws@8.18.2)(zod@3.25.76):
+  openai@5.23.2(ws@8.19.0)(zod@3.25.76):
     optionalDependencies:
-      ws: 8.18.2
+      ws: 8.19.0
       zod: 3.25.76
 
   p-retry@6.2.1:
@@ -3598,6 +3661,8 @@ snapshots:
   wrappy@1.0.2: {}
 
   ws@8.18.2: {}
+
+  ws@8.19.0: {}
 
   yallist@4.0.0: {}
 
