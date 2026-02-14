@@ -1,8 +1,9 @@
 import { env } from "@blaxel/core";
 import "@blaxel/telemetry";
 import Fastify from "fastify";
-import agent from "./agent.js";
-
+import agent from "./agent/agent.js";
+import { processMeetingController } from './controllers/meetings.controller.js';
+import multipart from "@fastify/multipart";
 interface RequestBody {
   inputs: string;
 }
@@ -10,6 +11,11 @@ interface RequestBody {
 async function main() {
   console.info("Booting up...");
   const app = Fastify();
+  await app.register(multipart, {
+    attachFieldsToBody: false,
+    limits: { fileSize: 50 * 1024 * 1024 },
+  });
+
 
   app.addHook("onResponse", async (request, reply) => {
     console.info(`${request.method} ${request.url} ${reply.statusCode} ${Math.round(reply.elapsedTime)}ms`);
@@ -29,7 +35,8 @@ async function main() {
     }
   });
 
-  
+  app.post("/process_meeting", processMeetingController); 
+
   const port = parseInt(env.PORT || "80");
   const host = env.HOST || "0.0.0.0";
   try {

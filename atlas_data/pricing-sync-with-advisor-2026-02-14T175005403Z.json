@@ -1,0 +1,30 @@
+{
+  "meeting_id": "pricing-sync-with-advisor-2026-02-14T175005403Z",
+  "title": "Pricing sync with advisor",
+  "date_iso": "2026-02-14T17:49:59.765Z",
+  "transcript": "Hey, what's up? This is a test.",
+  "extraction": {
+    "summary": "The meeting was a brief test conversation with no substantial content discussed.",
+    "highlights": [
+      "Test conversation",
+      "No substantial content"
+    ],
+    "topics": [
+      "pricing",
+      "sync",
+      "advisor",
+      "test"
+    ],
+    "decisions": [],
+    "action_items": [],
+    "conversation_health": {
+      "score": 20,
+      "signals": [
+        "Minimal engagement",
+        "Lack of content"
+      ],
+      "caveat": "Heuristic based on text; not definitive."
+    }
+  },
+  "memory_card": "Title: Pricing sync with advisor  \nDate: 2026-02-14  \n\nKey Decisions: None made; meeting was a test conversation with no substantial content.  \n\nTop Action Items: None identified.  \n\nMost Important Constraint/Rationale: Minimal engagement and lack of content indicate the need for a more structured discussion in future meetings to drive meaningful outcomes."
+}

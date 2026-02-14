@@ -1,0 +1,35 @@
+{
+  "meeting_id": "pricing-discussion-with-advisor-2026-02-14T163712947Z",
+  "title": "Pricing discussion with advisor",
+  "date_iso": "2026-02-14T16:37:05.442Z",
+  "transcript": "I belive that the correct price is 12",
+  "extraction": {
+    "summary": "The advisor believes that the correct price for the product is $12.",
+    "highlights": [
+      "Advisor suggests a price of $12."
+    ],
+    "topics": [
+      "Pricing",
+      "Advisor Input",
+      "Product Strategy"
+    ],
+    "decisions": [
+      {
+        "title": "Set Product Price",
+        "rationale": "Advisor's recommendation for pricing.",
+        "owner": "Advisor",
+        "confidence": 0.8
+      }
+    ],
+    "action_items": [],
+    "conversation_health": {
+      "score": 70,
+      "signals": [
+        "Clear recommendation",
+        "Single point of view"
+      ],
+      "caveat": "Heuristic based on text; not definitive."
+    }
+  },
+  "memory_card": "Title: Pricing discussion with advisor  \nDate: 2026-02-14  \n\nKey Decision: Set product price at $12 based on advisor's recommendation.  \nTop Action Items: None specified.  \nMost Important Constraint: The pricing decision is primarily based on the advisor's input, which carries a confidence level of 0.8."
+}

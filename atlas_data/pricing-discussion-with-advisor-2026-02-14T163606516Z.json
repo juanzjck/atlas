@@ -1,0 +1,53 @@
+{
+  "meeting_id": "pricing-discussion-with-advisor-2026-02-14T163606516Z",
+  "title": "Pricing discussion with advisor",
+  "date_iso": "2026-02-14T16:35:55.427Z",
+  "transcript": "...paste transcript here...",
+  "extraction": {
+    "summary": "The meeting focused on discussing the current pricing strategy and potential adjustments based on market trends and competitor analysis. The advisor provided insights on pricing models and suggested areas for improvement.",
+    "highlights": [
+      "Discussion on current pricing strategy",
+      "Insights on competitor pricing",
+      "Suggestions for pricing model adjustments"
+    ],
+    "topics": [
+      "Pricing Strategy",
+      "Market Trends",
+      "Competitor Analysis",
+      "Pricing Models",
+      "Improvements"
+    ],
+    "decisions": [
+      {
+        "title": "Adjust pricing model",
+        "rationale": "To remain competitive and align with market trends.",
+        "owner": "Product Team",
+        "confidence": 0.8
+      }
+    ],
+    "action_items": [
+      {
+        "task": "Conduct a detailed competitor pricing analysis",
+        "owner": "Marketing Team",
+        "due": "2023-11-15",
+        "confidence": 0.7
+      },
+      {
+        "task": "Prepare a revised pricing proposal",
+        "owner": "Product Team",
+        "due": "2023-11-30",
+        "confidence": 0.6
+      }
+    ],
+    "conversation_health": {
+      "score": 85,
+      "signals": [
+        "Engaged discussion",
+        "Clear insights shared",
+        "Actionable suggestions"
+      ],
+      "caveat": "Heuristic based on text; not definitive."
+    }
+  },
+  "memory_card": "Title: Pricing discussion with advisor  \nDate: 2026-02-14  \n\nKey Decision: Adjust pricing model to remain competitive and align with market trends.  \n\nAction Items:  \n1. Conduct a detailed competitor pricing analysis (Owner: Marketing Team, Due: 2023-11-15)  \n2. Prepare a revised pricing proposal (Owner: Product Team, Due: 2023-11-30)  \n\nConstraint/Rationale: Adjusting the pricing model is essential to stay competitive and respond to evolving market trends."
+}

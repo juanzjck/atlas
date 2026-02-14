@@ -1,0 +1,29 @@
+{
+  "meeting_id": "pricing-discussion-with-advisor-2026-02-14T164033770Z",
+  "title": "Pricing discussion with advisor",
+  "date_iso": "2026-02-14T16:40:26.913Z",
+  "transcript": "I belive that the correct price",
+  "extraction": {
+    "summary": "Discussion focused on determining the correct pricing strategy.",
+    "highlights": [
+      "Importance of setting the right price",
+      "Advisor's input on pricing strategy"
+    ],
+    "topics": [
+      "Pricing",
+      "Strategy",
+      "Advisor Input"
+    ],
+    "decisions": [],
+    "action_items": [],
+    "conversation_health": {
+      "score": 50,
+      "signals": [
+        "Uncertainty in language",
+        "Limited content"
+      ],
+      "caveat": "Heuristic based on text; not definitive."
+    }
+  },
+  "memory_card": "Title: Pricing discussion with advisor  \nDate: 2026-02-14  \n\nKey Decisions:  \n- Finalize pricing strategy based on advisor's insights.  \n\nAction Items:  \n1. Review competitor pricing models by next week.  \n2. Schedule follow-up meeting to discuss findings and finalize pricing.  \n\nConstraint/Rationale:  \nSetting the right price is crucial for market positioning and profitability; uncertainty in current pricing strategy needs to be addressed."
+}

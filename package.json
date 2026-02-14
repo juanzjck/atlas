@@ -17,6 +17,8 @@
     "@blaxel/core": "0.2.64",
     "@blaxel/llamaindex": "0.2.64",
     "@blaxel/telemetry": "0.2.64",
+    "@elevenlabs/elevenlabs-js": "^2.35.0",
+    "@fastify/multipart": "^9.4.0",
     "fastify": "^5.4.0"
   },
   "peerDependencies": {
