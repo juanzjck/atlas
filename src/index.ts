@@ -28,6 +28,8 @@ async function main() {
       return reply.status(500).send(error.stack);
     }
   });
+
+  
   const port = parseInt(env.PORT || "80");
   const host = env.HOST || "0.0.0.0";
   try {
