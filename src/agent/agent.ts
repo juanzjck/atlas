@@ -55,6 +55,24 @@ const DATA_DIR = process.env.ATLAS_DATA_DIR || path.join(process.cwd(), "atlas_d
 
 /** ---------- Persistence helpers ---------- */
 
+async function deleteMeeting(meeting_id: string): Promise<boolean> {
+  await ensureDataDir();
+  try {
+    await fs.unlink(meetingFile(meeting_id));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function clearAllMeetings(): Promise<number> {
+  await ensureDataDir();
+  const files = await fs.readdir(DATA_DIR);
+  const jsonFiles = files.filter((f) => f.endsWith(".json"));
+  await Promise.all(jsonFiles.map((f) => fs.unlink(path.join(DATA_DIR, f))));
+  return jsonFiles.length;
+}
+
 async function ensureDataDir() {
   await fs.mkdir(DATA_DIR, { recursive: true });
 }
@@ -162,6 +180,14 @@ const ingestSchema = z.object({
   transcript: z.string().min(20),
 });
 
+const deleteSchema = z.object({
+  meeting_id: z.string().min(1),
+});
+
+const clearSchema = z.object({
+  confirm: z.boolean().default(false),
+});
+
 const askSchema = z.object({
   question: z.string().min(1),
 });
@@ -212,7 +238,29 @@ export default async function atlas(input: string): Promise<string> {
 
   const atlasTools = [
     ...tools,
-
+    tool({
+      name: "atlas_delete_meeting",
+      description: "Delete a specific meeting from Atlas memory by meeting_id.",
+      parameters: deleteSchema,
+      execute: async ({ meeting_id }) => {
+        const ok = await deleteMeeting(meeting_id);
+        if (!ok) return `❌ Meeting not found (nothing deleted): ${meeting_id}`;
+        return `🗑️ Deleted meeting: ${meeting_id}`;
+      },
+    }),
+    tool({
+      name: "atlas_clear_memory",
+      description:
+        "Delete ALL meetings from Atlas memory. Safety: requires confirm=true.",
+      parameters: clearSchema,
+      execute: async ({ confirm }) => {
+        if (!confirm) {
+          return `⚠️ This will delete ALL saved meetings.\nTo proceed, call atlas_clear_memory with { "confirm": true }.`;
+        }
+        const count = await clearAllMeetings();
+        return `🧹 Cleared Atlas memory. Deleted ${count} meeting(s).`;
+      },
+    }),
     tool({
       name: "atlas_ingest_meeting",
       description:
@@ -352,6 +400,8 @@ Answer format:
       - If user asks "list meetings" or "what meetings do we have", use atlas_list_meetings.
       - If user asks about a specific meeting id, use atlas_get_meeting.
       - If user asks a question about past decisions, use atlas_ask.
+      - If user asks to delete a meeting, use atlas_delete_meeting.
+      - If user asks to clear/reset memory, use atlas_clear_memory (confirm required).
       `.trim(),
         }).run(input);
 

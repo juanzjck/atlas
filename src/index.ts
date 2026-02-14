@@ -28,6 +28,7 @@ async function main() {
   app.post<{ Body: RequestBody }>("/", async (request, reply) => {
     try {
       const response = await agent(request.body.inputs);
+      
       return reply.send(response);
     } catch (error: any) {
       console.error(error);
