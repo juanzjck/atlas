@@ -1,0 +1,352 @@
+/* ===== BASE ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #0B1220;
+  color: #E5E7EB;
+  line-height: 1.5;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #1E3A8A;
+  padding: 18px 40px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  height: 60px;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 20px;
+  opacity: 0.85;
+}
+
+/* ===== LAYOUT ===== */
+.layout {
+  display: grid;
+  grid-template-columns: 400px 1fr; /* Left fixed, Right expands */
+  gap: 30px;
+  padding: 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 100px; /* Sticks the chat/upload while scrolling feed */
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: #111827;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  border: 1px solid #1F2937;
+}
+
+/* Meeting Card in Feed */
+.meeting-card {
+  background: #1F2937;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #374151;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== TYPOGRAPHY ===== */
+h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+h3 {
+  font-size: 1rem;
+  color: #93C5FD; /* Light Blue */
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+
+.instruction {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-bottom: 18px;
+}
+
+/* ===== INPUTS ===== */
+input[type="file"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #374151;
+  border: 1px solid #4B5563;
+  color: white;
+  border-radius: 8px;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2563EB;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.primary-btn:hover {
+  background: #1D4ED8;
+}
+
+.primary-btn:disabled {
+  background: #4B5563;
+  cursor: not-allowed;
+}
+
+/* ===== CHAT ===== */
+.chat-log {
+  height: 300px;
+  overflow-y: auto;
+  background: #0F172A;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #374151;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-message {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 85%;
+}
+
+.chat-message.user {
+  background: #2563EB;
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-message.bot {
+  background: #374151;
+  color: #E5E7EB;
+  align-self: flex-start;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input-row input {
+  margin-bottom: 0;
+}
+
+.chat-input-row button {
+  width: auto;
+  padding: 0 24px;
+}
+
+/* ===== HEALTH BAR ===== */
+.health-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.health-bar {
+  flex: 1;
+  height: 8px;
+  background: #111827;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.health-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+/* ===== SPINNER ===== */
+.hidden { display: none !important; }
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#processing {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF;
+  font-size: 14px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: 80px;
+  padding: 40px 20px;
+  background: #0B1220; /* Matches body background */
+  border-top: 1px solid #1F2937;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer p {
+  margin: 0;
+  color: #9CA3AF; /* Gray text */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.sponsor-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px; /* Space between logos */
+  margin: 15px 0;
+  opacity: 0.9;
+}
+
+.sponsor-img {
+  height: 40px;
+  width: auto;
+  transition: all 0.2s ease;
+  display: block; /* Ensures SVG renders correctly */
+}
+
+/* We don't need the invert filter for the SVG since we set fill="white" */
+img.sponsor-img {
+  filter: brightness(0) invert(1);
+}
+
+.sponsor-img:hover {
+  opacity: 1;
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.divider {
+  color: #4B5563;
+  font-size: 24px;
+  font-weight: 300;
+  user-select: none;
+}
+
+.copyright {
+  font-size: 12px !important;
+  color: #4B5563 !important;
+  margin-top: 10px !important;
+}
+
+/* Mobile responsiveness for footer */
+@media (max-width: 600px) {
+  .sponsor-logos {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .divider {
+    display: none; /* Hide 'x' on mobile */
+  }
+}
+
+/* ===== INTEGRATIONS ===== */
+.integration-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.service-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  transition: opacity 0.2s, transform 0.1s;
+  font-size: 13px;
+}
+
+.service-btn:active { transform: scale(0.98); }
+
+.gmail { background: #EA4335; }   /* Google Red */
+.slack { background: #4A154B; }   /* Slack Purple */
+.outlook { background: #0078D4; } /* Outlook Blue */
+
+#syncStatus {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #10B981; /* Success Green */
+  font-size: 13px;
+  font-weight: 500;
+}

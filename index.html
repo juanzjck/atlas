@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atlas — Executive Meeting Intelligence</title>
+  <meta name="description" content="Atlas converts meeting audio into structured executive intelligence." />
+  <link rel="stylesheet" href="./styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="nav-left">
+    <img src="./icon.png" alt="Atlas Logo" class="logo"/>
+    <div>
+      <h1>Atlas</h1>
+      <p class="subtitle">Executive Meeting Intelligence</p>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <div class="left-column">
+    
+    <section class="card">
+      <h2>1. Upload Meeting</h2>
+      <p class="instruction">
+        Upload a recording. Supports <strong>MP3, M4A, WAV, MPEG, FLAC, OGG, AAC, WMA</strong>.
+      </p>
+	  <section class="card">
+		  <h2>Auto-Sync Integrations</h2>
+		  <p class="instruction">Connect to auto-ingest meeting recordings.</p>
+		  
+		  <div class="integration-grid">
+			<button class="service-btn gmail" onclick="syncService('Gmail')">
+			  Connect Gmail
+			</button>
+			<button class="service-btn slack" onclick="syncService('Slack')">
+			  Connect Slack
+			</button>
+			<button class="service-btn outlook" onclick="syncService('Outlook')">
+			  Connect Outlook
+			</button>
+		  </div>
+		  
+		  <div id="syncStatus" class="hidden">
+			<div class="spinner"></div>
+			<span id="syncText">Syncing...</span>
+		  </div>
+		</section>
+      <input 
+        type="file" 
+        id="audioFile" 
+        accept="audio/*, .mp3, .wav, .m4a, .flac, .ogg, .webm, .aac, .wma, .amr, .mpeg, .mpga"
+      />
+
+      <input 
+        type="text" 
+        id="meetingTitle" 
+        placeholder="Meeting Title (e.g., Q3 Strategy)"
+        maxlength="120"
+      />
+
+      <button id="uploadBtn" class="primary-btn">
+        Process Meeting
+      </button>
+
+      <div id="processing" class="hidden">
+        <div class="spinner"></div>
+        <span>Analyzing audio...</span>
+      </div>
+    </section>
+
+    <section class="card chat-card">
+      <h2>2. Ask Atlas</h2>
+      <p class="instruction">
+        Ask questions about the <strong>latest uploaded meeting</strong>.
+      </p>
+
+      <div id="chatLog" class="chat-log">
+        <div class="chat-message bot">Hello. Upload a meeting, and I can answer questions about it.</div>
+      </div>
+
+      <div class="chat-input-row">
+        <input 
+          type="text" 
+          id="chatInput" 
+          placeholder="Ex: What was the budget decision?"
+          maxlength="300"
+        />
+        <button id="sendBtn" class="primary-btn">Ask</button>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="right-column">
+    <h2>Meeting Feed</h2>
+    <p class="instruction" style="margin-bottom: 20px;">Analyzed meetings will pile up here (Newest First).</p>
+    <div id="meetingFeed"></div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>Built for <strong>Iterate x Columbia AI Club Hackathon</strong></p>
+    
+    <div class="sponsor-logos">
+      <a href="https://iterate.ai" target="_blank" rel="noopener">
+        <img 
+          src="https://placehold.co/120x40/transparent/white?text=Iterate&font=montserrat" 
+          alt="Iterate" 
+          class="sponsor-img" 
+        />
+      </a>
+
+      <span class="divider">×</span>
+
+      <a href="https://groups.gsb.columbia.edu/AIC/" target="_blank" rel="noopener" class="columbia-link">
+        <svg class="sponsor-img" viewBox="0 0 100 100" xmlns="https://groups.gsb.columbia.edu/upload/cbs/2021/image_upload_34747_image_upload_34749_CBSCGprimary_white_1011174538_3178022.png" style="height: 50px; fill: white;">
+          <path d="M50,10 L60,35 L85,35 L65,55 L75,80 L50,65 L25,80 L35,55 L15,35 L40,35 Z" />
+          <text x="50" y="95" font-size="12" text-anchor="middle" font-family="Inter, sans-serif" font-weight="bold">COLUMBIA</text>
+        </svg>
+      </a>
+    </div>
+    
+    <p class="copyright">© 2026 Atlas Team</p>
+  </div>
+</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>
