@@ -1,189 +1,132 @@
-# Blaxel LlamaIndex Agent
+````md
+## 🧠 Atlas: Meeting Intelligence & Persistent Memory
 
-<p align="center">
-  <img src="https://blaxel.ai/logo.png" alt="Blaxel" width="200"/>
-</p>
+This project extends the base Blaxel + LlamaIndex agent into **Atlas**, an always-on founder copilot that turns meeting recordings into durable company memory.
 
-<div align="center">
+Atlas can:
+- Transcribe **audio or video meetings**
+- Extract **decisions, topics, action items, and highlights**
+- Persist this information inside a **Blaxel sandbox**
+- Answer questions later using **institutional memory**, not just the last prompt
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js 18+](https://img.shields.io/badge/node-18+-blue.svg)](https://nodejs.org/downloads/)
-[![LlamaIndex](https://img.shields.io/badge/LlamaIndex-powered-brightgreen.svg)](https://www.llamaindex.ai/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-enabled-blue.svg)](https://www.typescriptlang.org/)
+---
 
-</div>
+## 🔄 How Atlas Works
 
-A template implementation of a conversational agent using LlamaIndex TypeScript and GPT-4. This agent demonstrates the power of LlamaIndex for building interactive AI agents with advanced document processing, retrieval-augmented generation (RAG), and tool integration capabilities with full TypeScript type safety.
+### 1. Upload a Meeting (Video or Audio)
+Atlas exposes an HTTP endpoint that accepts `multipart/form-data`.
 
-## 📑 Table of Contents
-
-- [Features](#features)
-- [Quick Start](#quick-start)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Running Locally](#running-the-server-locally)
-  - [Testing](#testing-your-agent)
-  - [Deployment](#deploying-to-blaxel)
-- [Project Structure](#project-structure)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [Support](#support)
-- [License](#license)
-
-## ✨ Features
-
-- Interactive conversational interface with document understanding
-- Advanced retrieval-augmented generation (RAG) capabilities
-- Tool integration support (including weather and search capabilities)
-- Streaming responses for real-time interaction
-- Built on LlamaIndex TypeScript for sophisticated document processing
-- Full TypeScript support with type safety
-- Easy deployment and integration with Blaxel platform
-
-## 🚀 Quick Start
-
-For those who want to get up and running quickly:
+**Fields**
+- `file` — meeting recording (`.mp4`, `.mov`, `.wav`, `.mp3`, etc.)
+- `title` — optional meeting title
 
 ```bash
-# Clone the repository
-git clone https://github.com/blaxel-ai/template-llama-index-ts.git
+curl -X POST http://localhost:3000/process_meeting \
+  -F "title=Weekly product sync" \
+  -F "file=@./meeting.mp4"
+````
 
-# Navigate to the project directory
-cd template-llama-index-ts
+---
 
-# Install dependencies
-npm install
+### 2. Video → Audio (If Needed)
 
-# Start the server
-bl serve --hotreload
+If the uploaded file is a video, Atlas extracts the audio track and converts it to a mono 16kHz WAV format before transcription.
 
-# In another terminal, test the agent
-bl chat --local blaxel-agent
+---
+
+### 3. Speech → Text (ElevenLabs)
+
+Atlas uses **ElevenLabs Speech-to-Text (Scribe v2)** to generate a transcript from the meeting audio.
+Optional features include speaker diarization and audio event tagging.
+
+---
+
+### 4. Decision & Topic Extraction
+
+Using **LlamaIndex** and a structured LLM prompt, Atlas extracts:
+
+* Meeting summary
+* Key decisions (with rationale and confidence)
+* Topics discussed
+* Action items
+* Conversation health indicators (heuristic signal)
+
+---
+
+### 5. Persistent Memory (Blaxel Sandbox)
+
+Each meeting is saved as a persistent record inside the Blaxel sandbox, including:
+
+* Transcript
+* Structured extraction
+* A short human-readable memory card
+
+This memory persists across sessions and server restarts.
+
+---
+
+### 6. Ask Atlas (Institutional Memory Q&A)
+
+Once meetings are ingested, users can query Atlas with questions such as:
+
+* “What did we decide about pricing last week?”
+* “Summarize decisions related to hiring.”
+* “Which meetings mentioned runway risk?”
+
+Atlas answers using stored meeting memory and decision context.
+
+---
+
+## 🔌 API: `/process_meeting`
+
+### Request
+
+* **Method:** `POST`
+* **Content-Type:** `multipart/form-data`
+
+**Fields**
+
+* `file` (required): audio or video file
+* `title` (optional): meeting title
+
+### Response
+
+```json
+{
+  "title": "Weekly product sync",
+  "transcript": "Full meeting transcript...",
+  "atlas_response": "Confirmation and extracted insights"
+}
 ```
 
-## 📋 Prerequisites
+---
 
-- **Node.js:** v18 or later
-- **npm or yarn:** For package management
-- **Blaxel Platform Setup:** Complete Blaxel setup by following the [quickstart guide](https://docs.blaxel.ai/Get-started#quickstart)
-  - **[Blaxel CLI](https://docs.blaxel.ai/Get-started):** Ensure you have the Blaxel CLI installed. If not, install it globally:
-    ```bash
-    curl -fsSL https://raw.githubusercontent.com/blaxel-ai/toolkit/main/install.sh | BINDIR=/usr/local/bin sudo -E sh
-    ```
-  - **Blaxel login:** Login to Blaxel platform
-    ```bash
-    bl login YOUR-WORKSPACE
-    ```
+## 🧩 Architecture Overview
 
-## 💻 Installation
-
-**Clone the repository and install dependencies:**
-
-```bash
-git clone https://github.com/blaxel-ai/template-llama-index-ts.git
-cd template-llama-index-ts
-npm install
+```
+Meeting Video / Audio
+        ↓
+Audio Extraction (if video)
+        ↓
+ElevenLabs STT
+        ↓
+Transcript
+        ↓
+LlamaIndex Agent (Atlas)
+        ↓
+Decisions / Topics / Actions
+        ↓
+Blaxel Persistent Memory
+        ↓
+Founder Q&A
 ```
 
-## 🔧 Usage
+---
 
-### Running the Server Locally
+## ⚠️ Notes
 
-Start the development server with hot reloading:
+* Conversation “tension” is a **heuristic indicator** based on language patterns, not definitive emotion detection.
+* This implementation is optimized for **hackathon speed and clarity**, not production-scale ingestion pipelines.
 
-```bash
-bl serve --hotreload
 ```
-
-_Note:_ This command starts the server and enables hot reload so that changes to the source code are automatically reflected.
-
-### Testing your agent
-
-You can test your agent using the chat interface:
-
-```bash
-bl chat --local blaxel-agent
 ```
-
-Or run it directly with specific input:
-
-```bash
-bl run agent blaxel-agent --local --data '{"input": "Analyze the documents and tell me about the key insights"}'
-```
-
-### Deploying to Blaxel
-
-When you are ready to deploy your application:
-
-```bash
-bl deploy
-```
-
-This command uses your code and the configuration files under the `.blaxel` directory to deploy your application.
-
-## 📁 Project Structure
-
-- **src/index.ts** - Application entry point
-- **src/agent.ts** - Core agent implementation with LlamaIndex integration
-- **src/types/** - TypeScript type definitions
-- **src/utils/** - Utility functions and helpers
-- **src/data/** - Document storage and processing
-- **package.json** - Node.js package configuration
-- **tsconfig.json** - TypeScript configuration
-- **blaxel.toml** - Blaxel deployment configuration
-
-## ❓ Troubleshooting
-
-### Common Issues
-
-1. **Blaxel Platform Issues**:
-   - Ensure you're logged in to your workspace: `bl login MY-WORKSPACE`
-   - Verify models are available: `bl get models`
-   - Check that functions exist: `bl get functions`
-
-2. **Node.js Version Issues**:
-   - Make sure you have Node.js 18+
-   - Try `node --version` to check your version
-   - Update Node.js if needed
-
-3. **TypeScript Compilation Errors**:
-   - Run `npx tsc --noEmit` to check for type errors
-   - Ensure all dependencies have proper type definitions
-   - Check tsconfig.json configuration
-
-For more help, please [submit an issue](https://github.com/blaxel-templates/template-llama-index-ts/issues) on GitHub.
-
-## 👥 Contributing
-
-Contributions are welcome! Here's how you can contribute:
-
-1. **Fork** the repository
-2. **Create** a feature branch:
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Commit** your changes:
-   ```bash
-   git commit -m 'Add amazing feature'
-   ```
-4. **Push** to the branch:
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **Submit** a Pull Request
-
-Please make sure to update tests as appropriate and follow the TypeScript code style of the project.
-
-## 🆘 Support
-
-If you need help with this template:
-
-- [Submit an issue](https://github.com/blaxel-templates/template-llama-index-ts/issues) for bug reports or feature requests
-- Visit the [Blaxel Documentation](https://docs.blaxel.ai) for platform guidance
-- Check the [LlamaIndex TypeScript Documentation](https://ts.llamaindex.ai/) for framework-specific help
-- Join our [Discord Community](https://discord.gg/G3NqzUPcHP) for real-time assistance
-
-## 📄 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
